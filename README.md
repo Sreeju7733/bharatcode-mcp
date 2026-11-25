@@ -23,6 +23,21 @@ Running `npx bharatcode-mcp init --preset core` generates or merges a validated 
 - (Optional) `uvx` for Python-based servers (the `git` server needs this)
 - (Optional) `docker` for containerized servers
 
+## Installation
+
+```bash
+# Run directly with npx (recommended, no install needed)
+npx bharatcode-mcp init --preset core
+
+# Or install globally via npm
+npm install -g bharatcode-mcp
+bharatcode-mcp init --preset core
+
+# Or install locally in a project
+npm install --save-dev bharatcode-mcp
+npx bharatcode-mcp init --preset core
+```
+
 ## Quickstart
 
 ```bash
