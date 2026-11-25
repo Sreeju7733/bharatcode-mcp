@@ -6,6 +6,9 @@ on:
     paths:
       - "docs/**"
       - "README.md"
+      - "CONTRIBUTING.md"
+      - "SECURITY.md"
+      - "CHANGELOG.md"
   workflow_dispatch:
 
 permissions:
@@ -27,11 +30,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Sync root README to docs
-        run: cp README.md docs/README.md
+      - name: Sync docs files
+        run: |
+          cp README.md docs/README.md
+          cp CONTRIBUTING.md docs/CONTRIBUTING.md
+          cp SECURITY.md docs/SECURITY.md
+          cp CHANGELOG.md docs/CHANGELOG.md
+          cp LICENSE docs/LICENSE
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
+        with:
+          enablement: true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

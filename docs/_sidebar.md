@@ -10,5 +10,6 @@
 - [Architecture & Design](architecture.md)
 - [Troubleshooting](troubleshooting.md)
 - [Adding New Servers](adding-servers.md)
-- [Security Policy](https://github.com/Sreeju7733/bharatcode-mcp/blob/main/SECURITY.md)
-- [Contributing](https://github.com/Sreeju7733/bharatcode-mcp/blob/main/CONTRIBUTING.md)
+- [Security Policy](SECURITY.md)
+- [Contributing](CONTRIBUTING.md)
+- [Changelog](CHANGELOG.md)
