@@ -3,9 +3,10 @@
   "minCliVersion": "1.0.0",
   "presets": {
     "core": ["git", "filesystem", "local-docs"],
-    "fullstack": ["git", "filesystem", "postgres", "local-docs"],
-    "browser": ["git", "playwright", "local-docs"],
-    "data": ["postgres"]
+    "fullstack": ["git", "filesystem", "postgres", "sqlite", "fetch", "local-docs"],
+    "browser": ["git", "playwright", "puppeteer", "fetch", "local-docs"],
+    "data": ["postgres", "sqlite"],
+    "devops": ["git", "github", "filesystem"]
   },
   "servers": {
     "git": {
@@ -32,12 +33,52 @@
       "requiredEnv": [],
       "optionalEnv": []
     },
+    "puppeteer": {
+      "description": "Browser automation and web console log inspection via Puppeteer",
+      "runtime": "npx",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-puppeteer"],
+      "requiredEnv": [],
+      "optionalEnv": []
+    },
     "postgres": {
       "description": "Read-only schema inspection and SQL querying for Postgres",
       "runtime": "npx",
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-postgres"],
       "requiredEnv": ["POSTGRES_URL"],
+      "optionalEnv": []
+    },
+    "sqlite": {
+      "description": "Local SQLite database querying, schema inspection, and table analysis",
+      "runtime": "npx",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sqlite", "--db-path", "./data.db"],
+      "requiredEnv": [],
+      "optionalEnv": []
+    },
+    "fetch": {
+      "description": "Fetch web pages and convert HTML content into clean markdown for context",
+      "runtime": "uvx",
+      "command": "uvx",
+      "args": ["mcp-server-fetch"],
+      "requiredEnv": [],
+      "optionalEnv": []
+    },
+    "github": {
+      "description": "Search repositories, inspect pull requests, and manage issues via GitHub API",
+      "runtime": "npx",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "requiredEnv": ["GITHUB_PERSONAL_ACCESS_TOKEN"],
+      "optionalEnv": []
+    },
+    "brave-search": {
+      "description": "Real-time web search and news querying powered by the Brave Search API",
+      "runtime": "npx",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-brave-search"],
+      "requiredEnv": ["BRAVE_API_KEY"],
       "optionalEnv": []
     },
     "local-docs": {

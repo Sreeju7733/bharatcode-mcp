@@ -65,9 +65,10 @@ Then restart bharatcode-cli or bharatcode-desktop. The agent will see the new to
 | Preset | Servers included |
 |---|---|
 | `core` | git, filesystem, local-docs |
-| `fullstack` | git, filesystem, postgres, local-docs |
-| `browser` | git, playwright, local-docs |
-| `data` | postgres |
+| `fullstack` | git, filesystem, postgres, sqlite, fetch, local-docs |
+| `browser` | git, playwright, puppeteer, fetch, local-docs |
+| `data` | postgres, sqlite |
+| `devops` | git, github, filesystem |
 
 For more details on each preset, see [docs/presets.md](docs/presets.md).
 
