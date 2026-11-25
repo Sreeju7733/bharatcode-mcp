@@ -143,7 +143,6 @@ describe("detect extra paths and schemas", () => {
 });
 describe("detect branch coverage", () => {
   it("resolves candidates when file exists on disk", () => {
-    const _existingFile = join(process.cwd(), "bharatcode.json");
     vi.spyOn(fsOps, "existsSync").mockImplementation((p: any) => String(p).endsWith("bharatcode.json"));
     const paths = resolveConfigPaths();
     expect(paths.length).toBeGreaterThan(0);
