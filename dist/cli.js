@@ -106,7 +106,7 @@ var fsOps = {
   copyFileSync: (src, dest) => fs.copyFileSync(src, dest),
   unlinkSync: (path) => fs.unlinkSync(path),
   existsSync: (path) => fs.existsSync(path),
-  readFileSync: (path, encoding) => fs.readFileSync(path, encoding)
+  readFileSync: (path, encoding) => fs.readFileSync(path, encoding).toString()
 };
 
 // src/detect.ts
