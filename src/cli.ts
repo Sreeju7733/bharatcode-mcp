@@ -6,7 +6,7 @@ import { loadRegistry, resolvePreset, getServer } from "./registry.js";
 import { resolveConfigPaths, detectSchema, detectRuntimes } from "./detect.js";
 import { mergeMcpConfig, removeMcpServer } from "./writer.js";
 import { runDoctor } from "./doctor.js";
-import { askPreset, askServers, askEnvKey } from "./prompts.js";
+import { askPreset, askEnvKey } from "./prompts.js";
 import type { SchemaFormat, ServerSpec } from "./types.js";
 
 export function createCli(): Command {
