@@ -60,8 +60,9 @@ export function resolveConfigPaths(opts: ResolveConfigOptions = {}): string[] {
     const sep = "\\";
     globalPath = `${appData}${sep}bharatcode${sep}bharatcode.json`;
   } else {
-    const xdgConfig = process.env.XDG_CONFIG_HOME || join(homedir(), ".config");
-    globalPath = join(xdgConfig, "bharatcode", "bharatcode.json");
+    const xdgConfig = process.env.XDG_CONFIG_HOME || (opts.platform === "linux" ? `${homedir()}/.config` : join(homedir(), ".config"));
+    const sep = opts.platform === "linux" ? "/" : (process.platform === "win32" ? "\\" : "/");
+    globalPath = `${xdgConfig}${sep}bharatcode${sep}bharatcode.json`;
   }
 
   const localPath = resolve(cwd, "bharatcode.json");
