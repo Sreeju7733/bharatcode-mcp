@@ -12,4 +12,5 @@
 - [Adding New Servers](adding-servers.md)
 - [Security Policy](SECURITY.md)
 - [Contributing](CONTRIBUTING.md)
+- [License](LICENSE.md)
 - [Changelog](CHANGELOG.md)
