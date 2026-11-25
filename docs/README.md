@@ -1,6 +1,6 @@
 # bharatcode-mcp
 
-[![CI](https://github.com/BharatCode-ai/bharatcode-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/BharatCode-ai/bharatcode-mcp/actions/workflows/ci.yml) [![npm](https://img.shields.io/npm/v/bharatcode-mcp.svg)](https://www.npmjs.com/package/bharatcode-mcp) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![CI](https://github.com/Sreeju7733/bharatcode-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/Sreeju7733/bharatcode-mcp/actions/workflows/ci.yml) [![npm](https://img.shields.io/npm/v/bharatcode-mcp.svg)](https://www.npmjs.com/package/bharatcode-mcp) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A lightweight CLI that installs and configures Model Context Protocol (MCP) servers into BharatCode configurations.
 
