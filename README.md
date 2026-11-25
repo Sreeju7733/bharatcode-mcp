@@ -16,6 +16,13 @@ Running `npx bharatcode-mcp init --preset core` generates or merges a validated 
 - Doctor: verifies every installed server actually starts.
 - Idempotent: running `init` twice produces the same result.
 
+## Documentation
+
+- [Presets Guide](docs/presets.md) — Detailed catalog of server presets and use cases.
+- [Architecture & Design](docs/architecture.md) — How config merging, atomic writes, and validation work.
+- [Troubleshooting](docs/troubleshooting.md) — Remediation for binary, environment, and handshake issues.
+- [Adding New Servers](docs/adding-servers.md) — Guide for adding custom servers to the registry.
+
 ## Requirements
 
 - Node.js 20 or later
@@ -61,6 +68,8 @@ Then restart bharatcode-cli or bharatcode-desktop. The agent will see the new to
 | `fullstack` | git, filesystem, postgres, local-docs |
 | `browser` | git, playwright, local-docs |
 | `data` | postgres |
+
+For more details on each preset, see [docs/presets.md](docs/presets.md).
 
 ## Commands
 
@@ -181,6 +190,8 @@ BharatCode CLI and Desktop derive from OpenCode, which uses the `mcp` key format
 | OpenCode | `mcp` | bharatcode-cli, bharatcode-desktop |
 | Claude | `mcpServers` | Claude Desktop, Cursor |
 
+For deep architectural details, see [docs/architecture.md](docs/architecture.md).
+
 ## Security
 
 Never writes secrets into `bharatcode.json`. Env values are prompted at install time and written only if you choose the `.env` option. Otherwise you get a `export KEY=value` line to add to your shell.
@@ -202,6 +213,11 @@ See [docs/troubleshooting.md](docs/troubleshooting.md) for:
 ## Adding your own server
 
 See [docs/adding-servers.md](docs/adding-servers.md).
+
+## Contributors
+
+- [Sreeju S](https://github.com/Sreeju7733)
+- [Flovo](https://github.com/flovo-labs)
 
 ## Contributing
 
