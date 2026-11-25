@@ -1,7 +1,7 @@
 {
   "name": "bharatcode-mcp",
   "version": "1.0.0",
-  "description": "Install and manage MCP servers for BharatCode CLI and Desktop",
+  "description": "Offline-first CLI to bootstrap and manage Model Context Protocol (MCP) servers into BharatCode CLI and Desktop with verified config merging.",
   "type": "module",
   "bin": {
     "bharatcode-mcp": "./dist/cli.js"
@@ -19,6 +19,20 @@
   "author": "Sreeju S (https://github.com/Sreeju7733)",
   "contributors": [
     "Flovo (https://github.com/flovo-labs)"
+  ],
+  "homepage": "https://github.com/Sreeju7733/bharatcode-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/Sreeju7733/bharatcode-mcp/issues"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "typescript",
+    "cli",
+    "developer-tools",
+    "bharatcode",
+    "offline-first"
   ],
   "scripts": {
     "build": "tsup",
@@ -49,6 +63,6 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/BharatCode-ai/bharatcode-mcp"
+    "url": "git+https://github.com/Sreeju7733/bharatcode-mcp.git"
   }
 }
