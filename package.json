@@ -16,6 +16,10 @@
   "engines": {
     "node": ">=20"
   },
+  "author": "Sreeju S (https://github.com/Sreeju7733)",
+  "contributors": [
+    "Flovo (https://github.com/flovo-labs)"
+  ],
   "scripts": {
     "build": "tsup",
     "typecheck": "tsc --noEmit",

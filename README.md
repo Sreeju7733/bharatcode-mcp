@@ -48,3 +48,8 @@ npx bharatcode-mcp doctor
 ## License
 
 MIT
+
+## Contributors
+
+- [Sreeju S](https://github.com/Sreeju7733)
+- [Flovo](https://github.com/flovo-labs)
