@@ -521,6 +521,31 @@ function removeMcpServer(configPath, serverName, opts = {}) {
 
 // src/doctor.ts
 import { spawn } from "child_process";
+function getResolutionTip(status, command, detail) {
+  switch (status) {
+    case "MISSING_BINARY":
+      if (command === "uvx") {
+        return "Install uv for Python MCP servers via: curl -LsSf https://astral.sh/uv/install.sh | sh";
+      }
+      if (command === "npx") {
+        return "Install Node.js 20+ via: https://nodejs.org or nvm install 20";
+      }
+      if (command === "docker") {
+        return "Install Docker Desktop or Docker engine and ensure it is running in PATH";
+      }
+      return `Ensure binary '${command}' is installed and present in your system PATH.`;
+    case "MISSING_ENV":
+      return "Define the missing environment variable in your shell (export KEY=...) or in a local .env file.";
+    case "TIMEOUT":
+      return "The server process timed out during initialization. Verify its command arguments, credentials, or network availability.";
+    case "HANDSHAKE_FAILED":
+      return "Server crashed or failed MCP stdio handshake. Check logs or test launching the command manually.";
+    case "BAD_VERSION":
+      return "Binary version is incompatible. Please update the binary to the latest recommended version.";
+    default:
+      return detail || "";
+  }
+}
 async function checkServerBinary(server, timeoutMs = 1e4) {
   const { name, command, args, requiredEnv, env } = server;
   if (requiredEnv && requiredEnv.length > 0) {
@@ -532,10 +557,11 @@ async function checkServerBinary(server, timeoutMs = 1e4) {
       }
     }
     if (missing.length > 0) {
+      const detail = `Missing required environment variable(s): ${missing.join(", ")}`;
       return {
         name,
         status: "MISSING_ENV",
-        detail: `Missing required environment variable(s): ${missing.join(", ")}`
+        detail: `${detail}. Action: Define ${missing.join(", ")} in your environment or .env file.`
       };
     }
   }
@@ -544,10 +570,11 @@ async function checkServerBinary(server, timeoutMs = 1e4) {
   try {
     cpOps.execSync(lookupCmd, { stdio: "ignore" });
   } catch {
+    const tip = getResolutionTip("MISSING_BINARY", command);
     return {
       name,
       status: "MISSING_BINARY",
-      detail: `Binary '${command}' is not found in PATH`
+      detail: `Binary '${command}' is not found in PATH. Action: ${tip}`
     };
   }
   let versionWorked = false;
@@ -566,7 +593,7 @@ async function checkServerBinary(server, timeoutMs = 1e4) {
       return {
         name,
         status: "TIMEOUT",
-        detail: `Timed out after ${timeoutMs}ms while executing '${command} --version'`
+        detail: `Timed out after ${timeoutMs}ms while executing '${command} --version'. Action: Check server responsiveness.`
       };
     }
   }
@@ -603,7 +630,7 @@ async function attemptMcpHandshake(command, args, customEnv, timeoutMs = 5e3) {
         }
         resolve4({
           status: "TIMEOUT",
-          detail: `MCP initialize handshake timed out after ${timeoutMs}ms`
+          detail: `MCP initialize handshake timed out after ${timeoutMs}ms. Action: Verify server initialization parameters.`
         });
       }
     }, timeoutMs);
@@ -613,7 +640,7 @@ async function attemptMcpHandshake(command, args, customEnv, timeoutMs = 5e3) {
         clearTimeout(timer);
         resolve4({
           status: "HANDSHAKE_FAILED",
-          detail: `Failed to spawn MCP server: ${err.message}`
+          detail: `Failed to spawn MCP server: ${err.message}. Action: Ensure server package and dependencies are installed.`
         });
       }
     });
@@ -660,7 +687,7 @@ async function attemptMcpHandshake(command, args, customEnv, timeoutMs = 5e3) {
         } else {
           resolve4({
             status: "HANDSHAKE_FAILED",
-            detail: `Server exited with code ${code} during MCP handshake`
+            detail: `Server exited with code ${code} during MCP handshake. Action: Check server logs for startup errors.`
           });
         }
       }

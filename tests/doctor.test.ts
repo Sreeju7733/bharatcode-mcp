@@ -310,3 +310,18 @@ describe("doctor additional branches", () => {
     expect(res.status).toBe("HANDSHAKE_FAILED");
   });
 });
+import { getResolutionTip } from "../src/doctor.js";
+
+describe("doctor resolution tips branch coverage", () => {
+  it("covers all getResolutionTip cases", () => {
+    expect(getResolutionTip("MISSING_BINARY", "uvx")).toContain("Install uv");
+    expect(getResolutionTip("MISSING_BINARY", "npx")).toContain("Install Node.js");
+    expect(getResolutionTip("MISSING_BINARY", "docker")).toContain("Install Docker");
+    expect(getResolutionTip("MISSING_BINARY", "other")).toContain("Ensure binary");
+    expect(getResolutionTip("MISSING_ENV", "cmd")).toContain("Define the missing environment");
+    expect(getResolutionTip("TIMEOUT", "cmd")).toContain("timed out during initialization");
+    expect(getResolutionTip("HANDSHAKE_FAILED", "cmd")).toContain("Server crashed");
+    expect(getResolutionTip("BAD_VERSION", "cmd")).toContain("Binary version is incompatible");
+    expect(getResolutionTip("OK", "cmd", "custom detail")).toBe("custom detail");
+  });
+});
