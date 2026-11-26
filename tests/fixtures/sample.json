@@ -1,0 +1,11 @@
+{
+  "name": "sample-fixture",
+  "mcp": {
+    "git": {
+      "type": "local",
+      "command": ["uvx", "mcp-server-git", "--repository", "."],
+      "enabled": true,
+      "__managedBy": "bharatcode-mcp"
+    }
+  }
+}

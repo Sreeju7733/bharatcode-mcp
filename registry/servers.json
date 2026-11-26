@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "1",
+  "minCliVersion": "1.0.0",
+  "presets": {
+    "core": ["git", "filesystem", "local-docs"],
+    "fullstack": ["git", "filesystem", "postgres", "local-docs"],
+    "browser": ["git", "playwright", "local-docs"],
+    "data": ["postgres"]
+  },
+  "servers": {
+    "git": {
+      "description": "Local Git repository inspection, diffs, and branch history",
+      "runtime": "uvx",
+      "command": "uvx",
+      "args": ["mcp-server-git", "--repository", "."],
+      "requiredEnv": [],
+      "optionalEnv": []
+    },
+    "filesystem": {
+      "description": "Scoped file read/write/search inside the active workspace",
+      "runtime": "npx",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "."],
+      "requiredEnv": [],
+      "optionalEnv": []
+    },
+    "playwright": {
+      "description": "Headless browser automation and accessibility tree snapshots",
+      "runtime": "npx",
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest"],
+      "requiredEnv": [],
+      "optionalEnv": []
+    },
+    "postgres": {
+      "description": "Read-only schema inspection and SQL querying for Postgres",
+      "runtime": "npx",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-postgres"],
+      "requiredEnv": ["POSTGRES_URL"],
+      "optionalEnv": []
+    },
+    "local-docs": {
+      "description": "Indexes project READMEs, /docs, and OpenAPI specs locally",
+      "runtime": "npx",
+      "command": "npx",
+      "args": ["-y", "bharatcode-local-docs-mcp", "--dir", "./docs"],
+      "requiredEnv": [],
+      "optionalEnv": [],
+      "comingSoon": true
+    }
+  }
+}
